@@ -17,9 +17,9 @@ exports.StarWarsApiSearch = (req, res) => {
     return res.json();
   })
   .then((json) => { 
-    temp = { title : planet.name,
-      terrain : planet.terrain,
-      population : planet.population
+    temp = { title : json.name,
+      terrain : json.terrain,
+      population : json.population
      };
     planet = temp;
   });
