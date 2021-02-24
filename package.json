@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:server": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +20,16 @@
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",
+    "body-parser": "^1.19.0",
+    "debug": "^4.3.1",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
+    "swapi-node": "^0.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
