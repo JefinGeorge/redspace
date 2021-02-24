@@ -17,7 +17,11 @@ exports.StarWarsApiSearch = (req, res) => {
     return res.json();
   })
   .then((json) => { 
-    planet = json;
+    temp = { title : planet.name,
+      terrain : planet.terrain,
+      population : planet.population
+     };
+    planet = temp;
   });
 
   for (i in json.species) {
@@ -57,12 +61,9 @@ exports.StarWarsApiSearch = (req, res) => {
     skinColor : json.skin_color,
     gender : json.gender,
     birthYear : json.birth_year,
-    homePlanet : { title : planet.name,
-                   terrain : planet.terrain,
-                   population : planet.population
-                  },
-    species : { species },
-    films  : { films }
+    homePlanet : planet,
+    species : species ,
+    films  : films
   };
 
   res.status(200).json({
