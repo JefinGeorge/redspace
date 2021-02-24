@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+var planet;
 var species = [];
 var films = [];
 
@@ -17,11 +18,10 @@ exports.StarWarsApiSearch = (req, res) => {
     return res.json();
   })
   .then((json) => { 
-    temp = { title : json.name,
+    planet = { title : json.name,
       terrain : json.terrain,
       population : json.population
      };
-    planet = temp;
   });
 
   for (i in json.species) {
