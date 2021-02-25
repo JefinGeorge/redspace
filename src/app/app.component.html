@@ -221,7 +221,7 @@
   }
 
   footer {
-    margin-top: 70%;
+    margin-top: 40%;
     display: flex;
     align-items: center;
     line-height: 20px;
@@ -328,26 +328,32 @@
   <p>Select a star wars character from below to begin</p>
 
   <div class="card-container">
-    <select name="cars" id="cars" form="carform">
-      <option value="1">Volvo</option>
-      <option value="2">Saab</option>
-      <option value="3">Opel</option>
-      <option value="4">Audi</option>
-      <option value="5">Volvo</option>
-      <option value="6">Saab</option>
-      <option value="7">Opel</option>
-      <option value="8">Audi</option>
-      <option value="9">Opel</option>
-      <option value="10">Audi</option>
+    <select (change)="selectChangeHandler($event)">
+      <option value="1">1. Luke Skywalker</option>
+      <option value="2">2. C-3PO</option>
+      <option value="3">3. R2-D2</option>
+      <option value="4">4. Darth Vader</option>
+      <option value="5">5. Leia Organa</option>
+      <option value="6">6. Owen Lars</option>
+      <option value="7">7. Beru Whitesun lars</option>
+      <option value="8">8. R5-D4</option>
+      <option value="9">9. Biggs Darklighter</option>
+      <option value="10">10. Obi-Wan Kenobi</option>
     </select>
   </div>
 
   <!-- Next Steps -->
   <h2>SWAP API DATA</h2>
-  <p></p>
-
-  <input type="hidden" #selection>
-
+  <p> Name: {{ posts.name }} </p>
+  <p> Height: {{ posts.height }} </p>
+  <p> Mass: {{ posts.mass }} </p>
+  <p> Hair color: {{ posts.hair_color }} </p>
+  <p> Skin Color: {{ posts.skin_color }} </p>
+  <p> Gender: {{ posts.gender }} </p>
+  <p> Birth Year: {{ posts.birth_year }} </p>
+  <p> Planet: {{ posts.planet }} </p>
+  <p> Species{{ posts.species[1] }} </p>
+  <p> Films: {{ posts.films[1] }} </p>
   <div class="card-container">
   </div>
 

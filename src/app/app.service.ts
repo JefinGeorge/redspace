@@ -9,33 +9,38 @@ import { environment } from "../../environments/environment";
 const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: "root" })
-export class PostsService {
-  private posts: any = [];
+export class SwapiService {
   private postsUpdated = new Subject<{ posts: any }>();
   
   constructor(private http: HttpClient, private router: Router) {}
-  
-  getPosts(postsPerPage: number, currentPage: number) {
+ 
+  getPosts(peopleID: Number) {
     this.http
-      .get<{ pid: string }>(
-        BACKEND_URL
+      .get<{ message: string; info: any; }>(
+        BACKEND_URL + peopleID
       )
       .pipe(
         map(postData => {
-              return {
-                title: postData.title,
-                content: postData.content,
-                id: postData._id,
-                imagePath: postData.imagePath,
-                creator: postData.creator
-              };
+          return {
+            posts: {
+                      name : postData.info.name,
+                      height : postData.info.height,
+                      mass : postData.info.mass,
+                      hairColor : postData.info.hair_color,
+                      skinColor : postData.info.skin_color,
+                      gender : postData.info.gender,
+                      birthYear : postData.info.birth_year,
+                      homePlanet : postData.info.planet,
+                      species : postData.info.species,
+                      films  : postData.info.films
+                    }
+               }
             })
-      )
+        )
       .subscribe(transformedPostData => {
-        this.posts = transformedPostData;
         this.postsUpdated.next({
-          posts: [...this.posts],
-        });
+          posts: transformedPostData,
+        })
       });
   }
 
