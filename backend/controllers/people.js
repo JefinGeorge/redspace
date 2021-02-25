@@ -1,10 +1,11 @@
 const fetch = require('node-fetch');
 var planet;
 var species = [];
-var films = [];
+var films = [];  
 
 exports.StarWarsApiSearch = (req, res) => {
 
+  // Getting People Details From SWAPI 
   fetch('https://swapi.dev/api/people/' + req.params.id,{
     method: 'GET'
   }).then((res) => {
@@ -12,65 +13,71 @@ exports.StarWarsApiSearch = (req, res) => {
   })
   .then((json) => {    
 
+  // Getting Planet Details From SWAPI 
   fetch(json.homeworld,{
     method: 'GET'
   }).then((res) => {
     return res.json();
   })
-  .then((json) => { 
-    planet = { title : json.name,
-      terrain : json.terrain,
-      population : json.population
+  .then((planets) => { 
+    planet = { title : planets.name,
+      terrain : planets.terrain,
+      population : planets.population
      };
-  });
+  })
 
+  // Getting Species Details From SWAPI 
   for (i in json.species) {
     fetch(json.species[i],{
       method: 'GET'
     }).then((res) => {
       return res.json();
     })
-    .then((json) => {   
-      temp = {name: json.name, 
-        average_lifespan : json.average_lifespan, 
-        classification : json.classification, 
-        language : json.language};
+    .then((specie) => {  
+      temp = {name: specie.name, 
+              average_lifespan : specie.average_lifespan, 
+              classification : specie.classification, 
+              language : specie.language};
       species.push(temp);
     });
   }
 
+  // Getting Film Details From SWAPI 
   for (i in json.films) {
     fetch(json.films[i],{
       method: 'GET'
     }).then((res) => {
       return res.json();
     })
-    .then((json) => {   
-      temp = {title: json.title, 
-            director : json.director, 
-            producer : json.producer, 
-            release_date : json.release_date};
+    .then((film) => {   
+      temp = {title: film.title, 
+             director : film.director, 
+             producer : film.producer, 
+             release_date : film.release_date};
       films.push(temp);
     });
   }
 
+  // Creating responce object
   responseObj = {name : json.name,
-    height : json.height,
-    mass : json.mass,
-    hairColor : json.hair_color,
-    skinColor : json.skin_color,
-    gender : json.gender,
-    birthYear : json.birth_year,
-    homePlanet : planet,
-    species : species ,
-    films  : films
-  };
+                height : json.height,
+                mass : json.mass,
+                hairColor : json.hair_color,
+                skinColor : json.skin_color,
+                gender : json.gender,
+                birthYear : json.birth_year,
+                homePlanet : planet,
+                species : species,
+                films  : films
+               }; 
 
   res.status(200).json({
     message: "Search Completed Succesfully!",
     info: responseObj
   });
-
+    // Resetting temporary storage arrays
+    species.length = 0;
+    films.length = 0;
   })
   .catch(error => {
     res.status(500).json({
