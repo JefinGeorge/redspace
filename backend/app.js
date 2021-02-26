@@ -1,36 +1,52 @@
-const path = require("path");
-const express = require("express");
-const bodyParser = require("body-parser");
+const app = require('./server');
+const debug = require("debug")("redspace");
+const http = require("http");
 
-const peopleRoutes = require("./route/people");
-const app = express();
+const normalizePort = val => {
+  var port = parseInt(val, 10);
 
-// ESTABLISHING DATABASE CONNECTIONS
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-//app.use("/", express.static(path.join(__dirname, "redspace")));
+  if (port >= 0) {
+    // port number
+    return port;
+  }
 
-// IF BACKEND AND FRONTEND ARE HOSTED SEPERATELY
+  return false;
+};
 
- app.use((req, res, next) => {
-   res.setHeader("Access-Control-Allow-Origin", "*");
-   res.setHeader(
-     "Access-Control-Allow-Headers",
-     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-   );
-   res.setHeader(
-     "Access-Control-Allow-Methods",
-     "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-   );
-   next();
-});
+const onError = error => {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+};
 
-app.use("/api/people", peopleRoutes);
-/*
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "angular", "index.html"));
-});
-*/
+const onListening = () => {
+  const addr = server.address();
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+  debug("Listening on " + bind);
+};
 
-module.exports = app;
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
+const server = http.createServer(app);
+server.on("error", onError);
+server.on("listening", onListening);
+server.listen(port);

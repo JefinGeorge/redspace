@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { SwapiService } from "../app/app.service";
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { SwapiService } from "../app/app.service";
 export class AppComponent implements OnInit, OnDestroy{
 
   posts: any = [];
-  title = 'Red Space';
+  selected = 1;
+  title = 'Red Space : Programming Challenge';
   selectedPeople: any = 'Sample';
   private postsSub: Subscription;
   private authStatusSub: Subscription;
@@ -20,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy{
   ) {}
  
   ngOnInit() {
-    this.SwapiService.getPosts(1);
+    this.SwapiService.getPosts(this.selected);
     this.postsSub = this.SwapiService
       .getPostUpdateListener()
       .subscribe((postData: { posts: any;}) => {
@@ -28,9 +30,9 @@ export class AppComponent implements OnInit, OnDestroy{
       });
   }
 
-  selectChangeHandler (event: any) {
+  selectChangeHandler(event: any) {
     // Monitor select box changes
-    this.SwapiService.getPosts(event.target.value);
+    this.SwapiService.getPosts(event.value);
   }
 
   ngOnDestroy() {

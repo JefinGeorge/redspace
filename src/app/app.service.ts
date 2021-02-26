@@ -26,11 +26,11 @@ export class SwapiService {
                       name : postData.info.name,
                       height : postData.info.height,
                       mass : postData.info.mass,
-                      hairColor : postData.info.hair_color,
-                      skinColor : postData.info.skin_color,
+                      hairColor : postData.info.hairColor,
+                      skinColor : postData.info.skinColor,
                       gender : postData.info.gender,
-                      birthYear : postData.info.birth_year,
-                      homePlanet : postData.info.planet,
+                      birthYear : postData.info.birthYear,
+                      homePlanet : postData.info.homePlanet,
                       species : postData.info.species,
                       films  : postData.info.films
                     }
