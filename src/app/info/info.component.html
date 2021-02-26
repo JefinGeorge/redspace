@@ -1,1 +1,11 @@
-<p>info works!</p>
+<div *ngIf="posts" class="card-container">
+    <div class="card">
+        <p> Name: {{ posts.name }}  <br>
+            Height: {{ posts.height }}  <br>
+            Mass: {{ posts.mass }}  <br>
+            Hair color: {{ posts.hairColor }}  <br>
+            Skin Color: {{ posts.skinColor }}  <br>
+            Gender: {{ posts.gender }}  <br>
+            Birth Year: {{ posts.birthYear }}  <br>
+    </div>
+</div>

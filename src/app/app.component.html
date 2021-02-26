@@ -26,47 +26,12 @@
 
   <div class="container">
 
-  <div *ngIf="posts" class="card-container">
-  <div class="card">
-      <p> Name: {{ posts.name }}  <br>
-          Height: {{ posts.height }}  <br>
-          Mass: {{ posts.mass }}  <br>
-          Hair color: {{ posts.hairColor }}  <br>
-          Skin Color: {{ posts.skinColor }}  <br>
-          Gender: {{ posts.gender }}  <br>
-          Birth Year: {{ posts.birthYear }}  <br>
-  </div>
+    <app-info></app-info>
+    <app-planet></app-planet>
+    <app-species></app-species>
   </div>
 
-  <div *ngIf="posts.homePlanet" class="card-container">
-    <div class="card">
-            Planet Name: {{ posts.homePlanet.title }}  <br>
-            Planet Terrain: {{ posts.homePlanet.terrain }}  <br>
-            Planet Population: {{ posts.homePlanet.population }}
-    </div>
-  </div>
-
-  <div *ngFor="let specie of posts.species" class="card-container">
-    <div class="card">
-            Species Name: {{ specie.name }}  <br>
-            Species Lifespan: {{ specie.average_lifespan }}  <br>
-            Species Classifiction: {{ specie.classification }}  <br>
-            Species Language: {{ specie.language }}
-      </div>
-  </div>
-  </div>
-
-  <div class="container">
-  <div *ngFor="let film of posts.films" class="card-container">
-    <div class="card" (click)="selection.value = 'component'" tabindex="0">
-        Films Title: {{ film.title }} <br>
-        Films Director: {{ film.director }}  <br>
-        Films Producer: {{ film.producer }}  <br>
-        Films Release Date: {{ film.release_date }} 
-    </div>
-  </div>
-
-</div>
+  <app-films></app-films>
 
   <!-- Footer -->
   <footer>

@@ -1,1 +1,7 @@
-<p>planet works!</p>
+<div *ngIf="posts.homePlanet" class="card-container">
+    <div class="card">
+            Planet Name: {{ posts.homePlanet.title }}  <br>
+            Planet Terrain: {{ posts.homePlanet.terrain }}  <br>
+            Planet Population: {{ posts.homePlanet.population }}
+    </div>
+  </div>

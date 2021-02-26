@@ -1,1 +1,8 @@
-<p>species works!</p>
+<div *ngFor="let specie of posts.species" class="card-container">
+    <div class="card">
+            Species Name: {{ specie.name }}  <br>
+            Species Lifespan: {{ specie.average_lifespan }}  <br>
+            Species Classifiction: {{ specie.classification }}  <br>
+            Species Language: {{ specie.language }}
+      </div>
+  </div>

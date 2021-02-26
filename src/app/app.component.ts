@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { SwapiService } from "../app/app.service";
-import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,6 @@ export class AppComponent implements OnInit, OnDestroy{
   title = 'Red Space : Programming Challenge';
   selectedPeople: any = 'Sample';
   private postsSub: Subscription;
-  private authStatusSub: Subscription;
 
   constructor(
     public SwapiService: SwapiService

@@ -1,1 +1,10 @@
-<p>films works!</p>
+<div class="container">
+    <div *ngFor="let film of posts.films" class="card-container">
+    <div class="card" (click)="selection.value = 'component'" tabindex="0">
+        Films Title: {{ film.title }} <br>
+        Films Director: {{ film.director }}  <br>
+        Films Producer: {{ film.producer }}  <br>
+        Films Release Date: {{ film.release_date }} 
+    </div>
+    </div>
+</div>
