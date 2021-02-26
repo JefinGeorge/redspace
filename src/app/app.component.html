@@ -1,13 +1,13 @@
 <div class="content" role="main">
 
   <!-- Highlight Card -->
-  <div class="card highlight-card card-small">
-    <h2>{{ title }}</h2>
+  <div class="card highlight-card">
+    <h3>{{ title }}</h3>
   </div>
 
   <!-- Resources -->
   <mat-form-field>
-    <mat-select  (selectionChange)="selectChangeHandler($event)" placeholder="Star Wars Characters">
+    <mat-select  [(value)]="selected" (selectionChange)="selectChangeHandler($event)" placeholder="Star Wars Characters">
       <mat-option value='1'>1. Luke Skywalker</mat-option>
       <mat-option value='2'>2. C-3PO</mat-option>
       <mat-option value='3'>3. R2-D2</mat-option>
